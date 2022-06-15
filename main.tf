@@ -2,9 +2,7 @@
 /*provider "aws" {
 region = "us-east-1"
 #access_key = "AKIARFPI7IB4G6O5SIU7"
-access_key = "AKIAQLVLKVPXVULFB5NS"
 #secret_key = "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"
-secret_key = "S8IJk5LQlMmuSlDwdj7Bbnc/G5kzijA5dhkFKbnB"
 #profile = "MYAWS"
 
 }*/
