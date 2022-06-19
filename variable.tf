@@ -16,15 +16,34 @@ variable "public_subnets" {
   description = "public subnets"
 }
 
+variable "private_subnets" {
+
+  type = string
+  description = "private subnets"
+  
+}
+
 variable "cidr_vpc" {
   type        = string
   description = "cidr of vpc"
+}
+
+variable "secondcidr_vpc" {
+  type = string
+  description = "Secondary CIDR of VPC"
+  
 }
 
 variable "public_subnet_name" {
   type        = string
   description = "public subnet name"
 }
+
+variable "private_subnet_name" {
+  type        = string
+  description = "public subnet name"
+}
+
 
 variable "internet_gateway" {
   type        = string
@@ -41,4 +60,15 @@ variable "vpc_name" {
   description = "vpc name"
 }
 
+variable "nat-gateway" {
 
+  type = string
+  description = "Name of NAT Gateway"
+  
+}
+
+variable "private_route" {
+  type = string
+  description = "Private Route"
+  
+}
