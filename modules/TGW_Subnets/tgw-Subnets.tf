@@ -56,7 +56,7 @@ resource "aws_route_table" "transit" {
 }
 
 data "aws_ec2_transit_gateway" "tgw" {
-  
+  #id = "tgw-12345678"
   
 }
 
@@ -68,7 +68,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "TGW-attachment" {
   subnet_ids = "${local.subnet_obj.*.subnet_ids}"
   transit_gateway_id = data.aws_ec2_transit_gateway.tgw.id
   tags = {
-    "Name" = "tgw-attachment"
+    "Name" = var.tgw-attachment-name
   }
   vpc_id = var.vpc_id
    

@@ -3,6 +3,15 @@ output "vpc_id" {
   
 }
 
+# output "cidr_vpc" {
+#   value = aws_vpc.vpc.*.cidr_block
+# }
+
+
+
+#  value = tomap({
+#     for k, inst in aws_instance.example : k => inst.id
+#   })
 /*output "private-subnet-ids" {
   description = "Private Subnets IDS"
   value       = aws_subnet.private-subnets.*.id

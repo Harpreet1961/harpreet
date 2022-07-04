@@ -48,6 +48,7 @@ depends_on = [
   module.tfc-connect-vpc
 ]
 
+
   filter {
     name   = "tag:Name"
     values = ["*test*","*test1*"]
@@ -55,7 +56,7 @@ depends_on = [
 }
 
 module "tf-connect-tgw" {
-  source = "./modules/TGW_Subnets"
+  source = "./modules/tgw_subnets"
   tfc_tgw_object = var.tfc_tgw_object
   depends_on = [
     data.aws_vpc.vpc_id
@@ -63,6 +64,17 @@ module "tf-connect-tgw" {
   vpc_id = data.aws_vpc.vpc_id.id
   tgw-attachment-name = var.tgw-attachment-name
   transit_gateway_id = "tgw-038774c83c89f14c6"
+}
+
+
+
+module "tf-connect-sg" {
+  source = "./modules/security_group"
+  cidr_tgw = "10.0.0.0/8"
+  vpc_id = data.aws_vpc.vpc_id.id
+  #cidr_vpc = var.cidr_vpc
+  cidr_vpc = data.aws_vpc.vpc_id.cidr_block
+  sg_name = var.sg_name
 }
 
 
