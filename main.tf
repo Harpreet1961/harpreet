@@ -29,6 +29,10 @@ module "tfc-connect-vpc" {
   source             = "./modules/vpc-baseline"
   tfc_vpc_object     = var.tfc_vpc_object
   tfc_subnet_object  = var.tfc_subnet_object
+  flow-log           = var.flow-log
+  cloudwatch-logs-name = var.cloudwatch-logs-name
+  flow-log-role-name   = var.flow-log-role-name
+ 
   # cidr_vpc           = var.cidr_vpc
   # secondcidr_vpc     = var.secondcidr_vpc
   # vpc_name           = var.vpc_name
@@ -63,7 +67,7 @@ module "tf-connect-tgw" {
   ]
   vpc_id = data.aws_vpc.vpc_id.id
   tgw-attachment-name = var.tgw-attachment-name
-  transit_gateway_id = "tgw-038774c83c89f14c6"
+  transit_gateway_id = "tgw-01ac968eda377c2fd"
 }
 
 
@@ -76,6 +80,67 @@ module "tf-connect-sg" {
   cidr_vpc = data.aws_vpc.vpc_id.cidr_block
   sg_name = var.sg_name
 }
+
+# VPC-Flow-Logs destined to CLoudwatch Logs
+
+# resource "aws_flow_log" "vpc-flow-logs" {
+#   iam_role_arn    = "${aws_iam_role.vpc-flow-logs-role.arn}"
+#   log_destination = "${aws_cloudwatch_log_group.cloudwatch-log-groups.arn}"
+#   traffic_type    = "ALL"
+#   vpc_id          = data.aws_vpc.vpc_id.id
+#   tags = {
+#     "Name" = "test-vpc-flow-logs"
+#   }
+# }
+
+# resource "aws_cloudwatch_log_group" "cloudwatch-log-groups" {
+#   name = "example"
+# }
+
+# resource "aws_iam_role" "vpc-flow-logs-role" {
+#   name = "example"
+#   assume_role_policy = <<EOF
+# {
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#       "Sid": "",
+#       "Effect": "Allow",
+#       "Principal": {
+#         "Service": "vpc-flow-logs.amazonaws.com"
+#       },
+#       "Action": "sts:AssumeRole"
+#     }
+#   ]
+# }
+# EOF
+# }
+
+# resource "aws_iam_role_policy" "vpc-flow-logs-policy" {
+#   name = "example"
+#   role = aws_iam_role.vpc-flow-logs-role.id
+
+#   policy = <<EOF
+# {
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#       "Action": [
+#         "logs:CreateLogGroup",
+#         "logs:CreateLogStream",
+#         "logs:PutLogEvents",
+#         "logs:DescribeLogGroups",
+#         "logs:DescribeLogStreams"
+#       ],
+#       "Effect": "Allow",
+#       "Resource": "*"
+#     }
+#   ]
+# }
+# EOF
+# }
+
+
 
 
 

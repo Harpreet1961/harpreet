@@ -99,6 +99,18 @@ variable "tfc_subnet_object" {
   }))
 }
 
+variable "flow-log" {
+  type = string
+}
 
+variable "cloudwatch-logs-name" {
+  type = string
+  
+}
+
+variable "flow-log-role-name" {
+  type = string
+  
+}
 
 

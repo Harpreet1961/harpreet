@@ -190,3 +190,17 @@ variable "sg_name" {
   type = string
   
 }
+
+ variable "flow-log" {
+  type = string
+}
+
+variable "cloudwatch-logs-name" {
+  type = string
+  
+}
+
+variable "flow-log-role-name" {
+  type = string
+  
+}
