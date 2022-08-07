@@ -141,7 +141,7 @@ module "tf-connect-tgw" {
   ]
   vpc_id = data.aws_vpc.vpc_id.id
   tgw-attachment-name = var.tgw-attachment-name
-  transit_gateway_id = "tgw-09012d456ad6ab69b"
+  transit_gateway_id = "tgw-050f79ef76ac2f8d8"
 }
 
 
