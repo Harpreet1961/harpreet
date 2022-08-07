@@ -57,7 +57,7 @@ resource "aws_route_table" "transit" {
 
 data "aws_ec2_transit_gateway" "tgw" {
   id = "tgw-050f79ef76ac2f8d8"
-  
+ 
 }
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "TGW-attachment" {
