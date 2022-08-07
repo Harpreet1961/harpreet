@@ -18,8 +18,8 @@ locals {
        protocol = "icmp"
 
     },
-    
-      {
+
+    {
 
       port = 5432
       description =" Allow PSQL"
@@ -36,8 +36,11 @@ locals {
 
 
     }
-  
-  ]
+
+    
+    
+    
+    ]
 }
 
 resource "aws_security_group" "my_sg" {
