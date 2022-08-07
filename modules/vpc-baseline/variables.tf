@@ -113,4 +113,23 @@ variable "flow-log-role-name" {
   
 }
 
+# variable "service-name" {
+#   type = string
+  
+# }
+
+# variable "service-type" {
+#   type = string
+  
+# }
+
+# variable "vpc-endpoint-type" {
+#   type = string
+  
+# }
+
+# variable "security_id" {
+#   type = string
+  
+# }
 

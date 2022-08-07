@@ -6,7 +6,7 @@ variable "account_number" {
 
 variable "aws_region" {
   type        = string
-  default     = "us-east-1"
+  default     = "us-west-2"
   description = "AWS region for deployments"
 }
 
@@ -168,9 +168,34 @@ variable "tfc_tgw_object" {
 
 # }
 
+variable "tfc-bucket-object" {
+  type = map(object({
+    bucket  = string,
+    #bucket_prefix = string,
+    acl = string,
+    #tags = string,
+    force_destroy  = bool,
+    acceleration_status  = string,
+    request_payer = string,
+    versioning = string,
+    environment_name = string
+    #policy = string
+    # vpc-private-subnet-cidr = string, 
+    # vpc-infra-subnet-cidr = string,
+    # private_subnet_name = string,
+    # infra-subnets = string
+  }))
+}
+
+
+
 variable "tgw-attachment-name" {
   type = string
 }
+
+
+
+
 
 # variable "cidr_tgw" {
 #   type = string
@@ -201,6 +226,21 @@ variable "cloudwatch-logs-name" {
 }
 
 variable "flow-log-role-name" {
+  type = string
+  
+}
+
+variable "service-name" {
+  type = string
+  
+}
+
+variable "service-type" {
+  type = string
+  
+}
+
+variable "vpc-endpoint-type" {
   type = string
   
 }

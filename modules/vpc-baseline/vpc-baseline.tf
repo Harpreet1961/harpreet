@@ -163,6 +163,66 @@ resource "aws_route_table" "infra-routes" {
 }
 
 
+
+
+# data "aws_subnet_ids" "subnet-ids" {
+
+#   vpc_id = "${local.vpc_obj[0].vpc_id}"
+
+#   filter {
+#     name   = "tag:Name"
+#     values = ["*private*","*private1*"]
+#   }
+
+  
+# }
+
+data "aws_vpc_endpoint_service" "s3Interface" {
+  #service = "s3"
+  service = "s3"
+ # service_type = "Interface" 
+  service_type ="Gateway"
+}
+
+# data "aws_security_group" "sg" {
+#    filter {
+#     name   = "tag:Name"
+#     values = ["*sg*","*sg1*"]
+#   }
+  
+# }
+
+data "aws_route_tables" "rt-id" {
+
+  vpc_id = "${local.vpc_obj[0].vpc_id}"
+
+  filter {
+
+    name = "tag:Name"
+    values = ["*pvt*","*pvt1*"]
+  
+  }
+  
+}
+
+
+resource "aws_vpc_endpoint" "s3Interface" {
+  vpc_id       = "${local.vpc_obj[0].vpc_id}"
+  service_name = data.aws_vpc_endpoint_service.s3Interface.service_name
+ # vpc_endpoint_type = "Interface" var.vpc-endpoint-type
+  vpc_endpoint_type = "Gateway"
+
+  route_table_ids = data.aws_route_tables.rt-id.ids
+
+  tags = {
+    "Name" = "Gateway-Endpoint-s3"
+  }
+
+ # subnet_ids = data.aws_subnet_ids.subnet-ids.ids
+ # security_group_ids = [data.aws_security_group.sg.id]
+ # security_group_ids =  var.security_id
+}
+
 # VPC Flow logs destined to CLoudwatch logs
 
 resource "aws_flow_log" "vpc-flow-logs" {
@@ -221,6 +281,7 @@ resource "aws_iam_role_policy" "vpc-flow-logs-policy" {
 }
 EOF
 }
+
 
 
 /*# Creating route table.

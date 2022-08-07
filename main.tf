@@ -32,6 +32,19 @@ module "tfc-connect-vpc" {
   flow-log           = var.flow-log
   cloudwatch-logs-name = var.cloudwatch-logs-name
   flow-log-role-name   = var.flow-log-role-name
+  # service-name        = var.service-name
+  # service-type        = var.service-type
+  # vpc-endpoint-type   = var.vpc-endpoint-type
+  # depends_on = [
+  #   module.tf-connect-sg
+  # ]
+  #  security_id =  "${module.tf-connect-sg.security_id}"
+  # depends_on = [
+  #   data.aws_security_group.sg
+  # ]
+  # security_group_ids  = [data.aws_security_group.sg.id]
+
+
  
   # cidr_vpc           = var.cidr_vpc
   # secondcidr_vpc     = var.secondcidr_vpc
@@ -59,6 +72,67 @@ depends_on = [
   }
 }
 
+
+data "aws_subnet_ids" "subnet-ids" {
+
+  vpc_id = data.aws_vpc.vpc_id.id
+
+  filter {
+    name   = "tag:Name"
+    values = ["*private*","*private1*"]
+  }
+
+  
+}
+
+data "aws_security_group" "sg" {
+
+  depends_on = [
+    module.tf-connect-sg
+  ]
+   filter {
+    name   = "tag:Name"
+    values = ["*sg*","*sg1*"]
+  }
+  
+}
+
+data "aws_vpc_endpoint_service" "s3Interface" {
+  #service = "s3"
+  service = var.service-name
+ # service_type = "Interface"
+ service_type = var.service-type
+}
+
+
+
+resource "aws_vpc_endpoint" "s3Interface" {
+  vpc_id       = data.aws_vpc.vpc_id.id
+  service_name = data.aws_vpc_endpoint_service.s3Interface.service_name
+ # vpc_endpoint_type = "Interface"
+ vpc_endpoint_type = var.vpc-endpoint-type
+
+  subnet_ids = data.aws_subnet_ids.subnet-ids.ids
+  security_group_ids = [data.aws_security_group.sg.id]
+}
+
+
+
+# data "aws_vpc_endpoint_service" "s3Interface" {
+#   service = "s3"
+#   service_type = "Interface"
+# }
+
+# resource "aws_vpc_endpoint" "s3Interface" {
+#   vpc_id       = "${local.vpc_obj[0].vpc_id}"
+#   service_name = data.aws_vpc_endpoint_service.s3Interface.service_name
+#   vpc_endpoint_type = "Interface"
+
+#   subnet_ids = data.aws_subnet_ids.snids.ids
+#   security_group_ids = [data.aws_security_group.default.id]
+# }
+
+
 module "tf-connect-tgw" {
   source = "./modules/tgw_subnets"
   tfc_tgw_object = var.tfc_tgw_object
@@ -67,7 +141,7 @@ module "tf-connect-tgw" {
   ]
   vpc_id = data.aws_vpc.vpc_id.id
   tgw-attachment-name = var.tgw-attachment-name
-  transit_gateway_id = "tgw-01ac968eda377c2fd"
+  transit_gateway_id = "tgw-0fcc34220e6eaa9e2"
 }
 
 
@@ -80,6 +154,19 @@ module "tf-connect-sg" {
   cidr_vpc = data.aws_vpc.vpc_id.cidr_block
   sg_name = var.sg_name
 }
+
+
+module "tf-connect-s3" {
+    source = "./modules/s3"
+    #C:\Users\Harpreet.Singh1\Documents\Test-S3\module
+    tfc-bucket-object = var.tfc-bucket-object
+   # tags = var.tags
+    #tfc-website-object = var.tfc-website-object
+   
+}
+
+
+
 
 # VPC-Flow-Logs destined to CLoudwatch Logs
 
