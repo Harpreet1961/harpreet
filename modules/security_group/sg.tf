@@ -35,12 +35,7 @@ locals {
        protocol = "tcp"
 
 
-    }
-
-    
-    
-    
-    ]
+    }]
 }
 
 resource "aws_security_group" "my_sg" {
