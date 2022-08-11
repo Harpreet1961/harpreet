@@ -244,3 +244,21 @@ variable "vpc-endpoint-type" {
   type = string
   
 }
+
+variable "port" {
+  type = number
+ # default = "5432"
+    
+}
+
+variable "protocol" {
+  type = string
+ # default = "tcp"
+  
+}
+
+variable "description" {
+  type = string
+ # default = "Allo psql"
+  
+}

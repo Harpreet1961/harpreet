@@ -137,3 +137,7 @@ flow-log-role-name  =  "test-vpc-flow-log-role"
 service-name = "s3"
 service-type = "Interface"
 vpc-endpoint-type = "Interface"
+
+port = "5432"
+protocol = "tcp"
+description = "Allow PSQL"

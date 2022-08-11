@@ -23,6 +23,19 @@
 #   #vpc_id            = module.tf-coonect-vpc.vpc_id
 
 # }
+# Defining provider
+provider "aws" {
+  region  = var.aws_region
+  profile = "tf-user"
+  version = "~> 3.12"
+}
+
+data "aws_caller_identity" "current" {}
+
+data "aws_partition" "current" {}
+
+
+
 
 # VPC Module
 module "tfc-connect-vpc" {
@@ -141,7 +154,7 @@ module "tf-connect-tgw" {
   ]
   vpc_id = data.aws_vpc.vpc_id.id
   tgw-attachment-name = var.tgw-attachment-name
-  transit_gateway_id = "tgw-04221366432ff54af"
+  transit_gateway_id = "tgw-0fcc34220e6eaa9e2"
 }
 
 
@@ -153,17 +166,20 @@ module "tf-connect-sg" {
   #cidr_vpc = var.cidr_vpc
   cidr_vpc = data.aws_vpc.vpc_id.cidr_block
   sg_name = var.sg_name
+  port = var.port
+  protocol = var.protocol
+  description = var.description
 }
 
 
-module "tf-connect-s3" {
-    source = "./modules/s3"
-    #C:\Users\Harpreet.Singh1\Documents\Test-S3\module
-    tfc-bucket-object = var.tfc-bucket-object
-   # tags = var.tags
-    #tfc-website-object = var.tfc-website-object
+# module "tf-connect-s3" {
+#     source = "./modules/s3"
+#     #C:\Users\Harpreet.Singh1\Documents\Test-S3\module
+#     tfc-bucket-object = var.tfc-bucket-object
+#    # tags = var.tags
+#     #tfc-website-object = var.tfc-website-object
    
-}
+# }
 
 
 

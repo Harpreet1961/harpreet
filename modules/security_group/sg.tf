@@ -19,11 +19,11 @@ locals {
 
     },
 
-    {
+        {
 
-      port = 5432
-      description =" Allow PSQL"
-       protocol = "tcp"
+      port = var.port
+      description = var.description
+       protocol = var.protocol
 
 
     },
@@ -35,7 +35,12 @@ locals {
        protocol = "tcp"
 
 
-    }]
+    }
+
+    
+    
+    
+    ]
 }
 
 resource "aws_security_group" "my_sg" {
