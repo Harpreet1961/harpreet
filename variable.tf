@@ -168,24 +168,24 @@ variable "tfc_tgw_object" {
 
 # }
 
-variable "tfc-bucket-object" {
-  type = map(object({
-    bucket  = string,
-    #bucket_prefix = string,
-    acl = string,
-    #tags = string,
-    force_destroy  = bool,
-    acceleration_status  = string,
-    request_payer = string,
-    versioning = string,
-    environment_name = string
-    #policy = string
-    # vpc-private-subnet-cidr = string, 
-    # vpc-infra-subnet-cidr = string,
-    # private_subnet_name = string,
-    # infra-subnets = string
-  }))
-}
+# variable "tfc-bucket-object" {
+#   type = map(object({
+#     bucket  = string,
+#     #bucket_prefix = string,
+#     acl = string,
+#     #tags = string,
+#     force_destroy  = bool,
+#     acceleration_status  = string,
+#     request_payer = string,
+#     versioning = string,
+#     environment_name = string
+#     #policy = string
+#     # vpc-private-subnet-cidr = string, 
+#     # vpc-infra-subnet-cidr = string,
+#     # private_subnet_name = string,
+#     # infra-subnets = string
+#   }))
+# }
 
 
 

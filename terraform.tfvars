@@ -87,37 +87,37 @@ tfc_tgw_object = {
 }
 
 
-    tfc-bucket-object = {
-    "bucket_object" = {
-    bucket  = "sudha-tf-10-7-2022"
-    bucket_prefix = "test"
-    acl = "private"
-   # tags = "test-bucket"
-    force_destroy  = "false" 
-    acceleration_status  = "Suspended",
-    request_payer = "BucketOwner"
-    versioning = "Enabled"
-    environment_name = "Dev"
-    #policy = "null"
-    # vpc-private-subnet-cidr = "10.11.4.0/24"
-    # vpc-infra-subnet-cidr = "10.11.7.0/24"
-    # private_subnet_name = "demo-private-subnet"
-    # infra-subnets = "Infra-Demo"    
-  },
+#     tfc-bucket-object = {
+#     "bucket_object" = {
+#     bucket  = "sudha-tf-10-7-2022"
+#     bucket_prefix = "test"
+#     acl = "private"
+#    # tags = "test-bucket"
+#     force_destroy  = "false" 
+#     acceleration_status  = "Suspended",
+#     request_payer = "BucketOwner"
+#     versioning = "Enabled"
+#     environment_name = "Dev"
+#     #policy = "null"
+#     # vpc-private-subnet-cidr = "10.11.4.0/24"
+#     # vpc-infra-subnet-cidr = "10.11.7.0/24"
+#     # private_subnet_name = "demo-private-subnet"
+#     # infra-subnets = "Infra-Demo"    
+#   },
 
-  "bucket_devops_object" = {
-    bucket  = "sudha-devops-tf-10-7-2022"
-    bucket_prefix = "test2"
-    acl = "public-read"
-   # tags = "devops-bucket"
-    force_destroy  = "false" 
-    acceleration_status  = "Suspended",
-    request_payer = "BucketOwner"
-    versioning = "Suspended"
-    environment_name = "Test"
-}
+#   "bucket_devops_object" = {
+#     bucket  = "sudha-devops-tf-10-7-2022"
+#     bucket_prefix = "test2"
+#     acl = "public-read"
+#    # tags = "devops-bucket"
+#     force_destroy  = "false" 
+#     acceleration_status  = "Suspended",
+#     request_payer = "BucketOwner"
+#     versioning = "Suspended"
+#     environment_name = "Test"
+# }
 
-    }
+#     }
 
 
 
