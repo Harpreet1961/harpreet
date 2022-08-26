@@ -86,18 +86,36 @@ depends_on = [
 }
 
 
-data "aws_subnet_ids" "subnet-ids" {
+# data "aws_subnet_ids" "subnet-ids" {
 
-  vpc_id = data.aws_vpc.vpc_id.id
+#   vpc_id = data.aws_vpc.vpc_id.id
+
+#   filter {
+#     name   = "tag:Name"
+#     values = ["*private*","*private1*"]
+#   }
+
+  
+# }
+  
+data "aws_subnets" "subnets" {
+  
+    filter {
+    name =  "vpc-id"
+  values = [data.aws_vpc.vpc_id.id]
+    
+  }
 
   filter {
     name   = "tag:Name"
-    values = ["*private*","*private1*"]
+    values = ["*private*", "*private1*"]
+    
   }
+  
+} 
 
   
-}
-
+  
 data "aws_security_group" "sg" {
 
   depends_on = [
@@ -125,7 +143,7 @@ resource "aws_vpc_endpoint" "s3Interface" {
  # vpc_endpoint_type = "Interface"
  vpc_endpoint_type = var.vpc-endpoint-type
 
-  subnet_ids = data.aws_subnet_ids.subnet-ids.ids
+  subnet_ids = data.aws_subnets.subnets.ids
   security_group_ids = [data.aws_security_group.sg.id]
 }
 
