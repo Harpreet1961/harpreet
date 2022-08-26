@@ -27,7 +27,7 @@
 provider "aws" {
   region  = var.aws_region
   profile = "tf-user"
-  version = "~> 4.0"
+#  version = "~> 4.0"
 }
 
 data "aws_caller_identity" "current" {}
