@@ -165,7 +165,7 @@ resource "aws_vpc_endpoint" "s3Interface" {
 
 
 module "tf-connect-tgw" {
-  source = "./modules/tgw_subnets"
+  source = "./modules/TGW_Subnets"
   tfc_tgw_object = var.tfc_tgw_object
   depends_on = [
     data.aws_vpc.vpc_id
