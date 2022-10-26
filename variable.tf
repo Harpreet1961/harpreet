@@ -6,7 +6,7 @@ variable "account_number" {
 
 variable "aws_region" {
   type        = string
-  default     = "us-west-2"
+  default     = "eu-west-2"
   description = "AWS region for deployments"
 }
 
