@@ -46,7 +46,7 @@ tfc_subnet_object = {
     vpc-private-subnet-cidr = "10.142.53.64/28"
     vpc-infra-subnet-cidr = "10.142.53.112/28"
     private_subnet_name = "demo-private-subnet1"
-    availability_zone = "us-west-2a"
+    availability_zone = "eu-west-2a"
     infra-subnets = "Infra-Demo1"   
      pvt-route-name = "pvt-route-table1",
     infra-route-name = "infra-route-table1" 
@@ -56,7 +56,7 @@ tfc_subnet_object = {
     vpc-private-subnet-cidr = "10.142.53.80/28"
     vpc-infra-subnet-cidr = "10.142.53.128/28"
     private_subnet_name = "demo-private-subnet3"
-    availability_zone = "us-west-2b"
+    availability_zone = "eu-west-2b"
     infra-subnets = "Infra-Demo3"  
      pvt-route-name ="pvt-route-table3",
     infra-route-name ="infra-route-table3" 
@@ -71,7 +71,7 @@ tfc_tgw_object = {
     transit-name = "tgw-subnet1"
     transit_subnets = "10.142.53.16/28"
     transit-routes = "transit-route-table1"
-    availability_zone = "us-west-2b"
+    availability_zone = "eu-west-2b"
     #transit_gateway_id="tgw-01a5fc3e6e83e1b31"
    
   },
@@ -80,7 +80,7 @@ tfc_tgw_object = {
     transit-name = "tgw-subnet2"
     transit_subnets = "10.142.53.32/28"
     transit-routes = "transit-route-table2"
-    availability_zone = "us-west-2c"
+    availability_zone = "eu-west-2c"
 
 }
 
