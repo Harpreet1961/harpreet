@@ -30,6 +30,24 @@ provider "aws" {
 #  version = "~> 4.0"
 }
 
+terraform {
+ backend "s3" {
+   bucket         = "tf-state-28-12"
+   key            = "state/terraform.tfstate1"
+   region         = "eu-west-2"
+ #  encrypt        = true
+  # kms_key_id     = "alias/terraform-bucket-key"
+   profile = "tf-user"
+  
+
+#   dynamodb_table = "terraform-state"
+
+
+ }
+ 
+ 
+}
+
 data "aws_caller_identity" "current" {}
 
 data "aws_partition" "current" {}
